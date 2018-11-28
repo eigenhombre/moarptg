@@ -20,7 +20,7 @@
        (repeatedly height)))
 
 (def max-width 90)
-(def max-height 49)
+(def max-height 51)
 
 (def firmament
   (->> #(into [] (repeat max-width \space))
@@ -110,12 +110,21 @@
     (doseq [[x y] blockpoints]
       (s/put-string scr x y "█"))))
 
-(paint 0 0 (blank max-width max-height))
-#_(make-sprites)
+(defn make-box [[cx cy cz]
+                [h w d]
+                [zenith
+                 azimuth]]
+  [])
 
-#_(dotimes [_ 100]
+#_(make-box [0 0 0] [30 30 30] [0.3 0.3])
+
+(comment
+  (make-sprites)
+  (paint 0 0 (blank max-width max-height))
+
+  (dotimes [_ 3]
     (->> (random-line-real-space)
          (map realpoint->blockpoint)
-         draw-line-in-block-coords))
+         draw-line-in-block-coords)))
 
 (s/redraw scr)
